@@ -101,6 +101,10 @@ header.solid-nav .logo-subtitle {
 
 /* Mobile Menu */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0.3rem 2.3rem;
+  }
+  
   .hamburger {
     display: flex;
   }

@@ -80,14 +80,20 @@
         });
         
         // Change navbar background on scroll
-        window.addEventListener('scroll', function() {
+        function updateNavbarOnScroll() {
             const header = document.querySelector('header');
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-        });
+        }
+        
+        // Check scroll position on page load
+        window.addEventListener('DOMContentLoaded', updateNavbarOnScroll);
+        
+        // Check scroll position on scroll
+        window.addEventListener('scroll', updateNavbarOnScroll);
     </script>
 </body>
 </html>
