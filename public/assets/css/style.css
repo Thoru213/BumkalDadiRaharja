@@ -870,10 +870,11 @@ footer {
 
 /* ====== CAKUPAN PAGES ====== */
 .cakupan-img {
-  width: 100%;
-  max-width: 100%;
+  width: 80%;
+  max-width: 1000px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem;
+  display: block;
 }

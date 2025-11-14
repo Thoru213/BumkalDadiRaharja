@@ -2,7 +2,7 @@
 
 @section('content')
 <div style="padding: 2rem;">
-    <h2 style="color: #047857; margin-bottom: 1.5rem;">{{ isset($pertanian) ? '✏️ Edit' : '➕ Tambah' }} Data Pertanian & Perkebunan</h2>
+    <h2 style="color: #047857; margin-bottom: 1.5rem;">{{ isset($pertanian) ? '✏️ Edit' : '➕ Tambah' }} Data Pertanian, Perkebunan, Peternakan & Perikanan</h2>
     
     <form action="{{ isset($pertanian) ? route('admin.pertanian.update', $pertanian) : route('admin.pertanian.store') }}" method="POST" enctype="multipart/form-data" style="background: white; padding: 2rem; border-radius: 10px; max-width: 800px; margin-top: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
         @csrf

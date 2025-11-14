@@ -3,7 +3,7 @@
 @section('content')
 <div style="padding: 2rem;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-        <h2>Data Pertanian & Perkebunan</h2>
+        <h2>Data Pertanian, Perkebunan, Peternakan & Perikanan</h2>
         <a href="{{ route('admin.pertanian.create') }}" style="background: #2d6a4f; color: white; padding: 0.7rem 1.5rem; text-decoration: none; border-radius: 5px;">+ Tambah Data</a>
     </div>
 

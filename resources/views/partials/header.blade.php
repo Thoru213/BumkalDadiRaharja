@@ -16,7 +16,7 @@
             <li class="dropdown" id="cakupanDropdown">
                 <a href="javascript:void(0)" onclick="toggleDropdown(event)">Cakupan ▾</a>
                 <div class="dropdown-content">
-                    <a href="{{ route('cakupan.show', 'pertanian') }}">Pertanian & Perkebunan</a>
+                    <a href="{{ route('cakupan.show', 'pertanian') }}">Pertanian, Perkebunan, Peternakan & Perikanan</a>
                     <a href="{{ route('cakupan.show', 'pariwisata') }}">Pariwisata</a>
                     <a href="{{ route('cakupan.show', 'umkm') }}">UMKM</a>
                 </div>

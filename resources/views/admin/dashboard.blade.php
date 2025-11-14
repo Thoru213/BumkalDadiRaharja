@@ -19,7 +19,7 @@
             </div>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                 <div style="display: flex; justify-content: space-between; padding: 8px 0;">
-                    <span><span style="display: inline-block; width: 12px; height: 12px; background: #4CAF50; border-radius: 50%; margin-right: 8px;"></span>Pertanian:</span>
+                    <span><span style="display: inline-block; width: 12px; height: 12px; background: #4CAF50; border-radius: 50%; margin-right: 8px;"></span>Pertanian, Perkebunan, Peternakan & Perikanan:</span>
                     <strong>{{ $stats['pertanian'] }}</strong>
                 </div>
                 <div style="display: flex; justify-content: space-between; padding: 8px 0;">
@@ -46,7 +46,7 @@
             </div>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                 <div style="display: flex; justify-content: space-between; padding: 8px 0;">
-                    <span><span style="display: inline-block; width: 12px; height: 12px; background: #4CAF50; border-radius: 50%; margin-right: 8px;"></span>Pertanian:</span>
+                    <span><span style="display: inline-block; width: 12px; height: 12px; background: #4CAF50; border-radius: 50%; margin-right: 8px;"></span>Pertanian, Perkebunan, Peternakan & Perikanan:</span>
                     <strong>{{ $stats['pertanian'] }} gambar</strong>
                 </div>
                 <div style="display: flex; justify-content: space-between; padding: 8px 0;">
@@ -86,7 +86,7 @@
             new Chart(fasilitasCtx.getContext('2d'), {
                 type: 'pie',
                 data: {
-                    labels: ['Pertanian', 'Pariwisata', 'UMKM'],
+                    labels: ['Pertanian, Perkebunan, Peternakan & Perikanan', 'Pariwisata', 'UMKM'],
                     datasets: [{
                         data: [fasilitasData.pertanian, fasilitasData.pariwisata, fasilitasData.umkm],
                         backgroundColor: [
@@ -131,7 +131,7 @@
             new Chart(gambarCtx.getContext('2d'), {
                 type: 'pie',
                 data: {
-                    labels: ['Pertanian', 'Pariwisata', 'UMKM', 'Galeri'],
+                    labels: ['Pertanian, Perkebunan, Peternakan & Perikanan', 'Pariwisata', 'UMKM', 'Galeri'],
                     datasets: [{
                         data: [fasilitasData.pertanian, fasilitasData.pariwisata, fasilitasData.umkm, fasilitasData.galeri],
                         backgroundColor: [

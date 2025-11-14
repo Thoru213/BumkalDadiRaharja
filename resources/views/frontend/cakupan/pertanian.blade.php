@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Pertanian & Perkebunan - Gugur Gunung')
+@section('title', 'Pertanian, Perkebunan, Peternakan & Perikanan - Gugur Gunung')
 
 @section('content')
 <!-- 🔹 TOMBOL KEMBALI -->
@@ -9,13 +9,14 @@
 </div>
 
 <section>
-    <h2 style="text-align: center; margin-bottom: 2rem;">Pertanian & Perkebunan</h2>
+    <h2 style="text-align: center; margin-bottom: 2rem;">Pertanian, Perkebunan, Peternakan & Perikanan</h2>
     
     <img src="{{ asset('assets/images/pertanian.jpg') }}" alt="Pertanian" class="cakupan-img">
     
     <p style="text-align: justify; max-width: 800px; margin: 0 auto 3rem; line-height: 1.8; color: #555;">
-        Bidang Pertanian dan Perkebunan merupakan salah satu sector yang ada di
-        Bumkal Dadi Raharja. Kawasan ini mengembangkan berbagai komoditas unggulan
+        Bidang Pertanian, Perkebunan, Peternakan & Perikanan atau biasa disingkat dengan P4 ini
+        merupakan salah satu sector yang ada di Bumkal Dadi Raharja. 
+        Kawasan ini mengembangkan berbagai komoditas unggulan
         sebagai bagian dari program ketahanan pangan pemerintah, yang menjadi hasil
         pertanian khas masyarakat setempat. Melalui konsep eduwisata, pengunjung
         dapat belajar langsung tentang proses budidaya tanaman, sekaligus suasana

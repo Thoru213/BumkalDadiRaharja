@@ -1,7 +1,7 @@
 <div class="sidebar">
     <ul>
         <li><a href="{{ route('admin.dashboard') }}"><i class="fas fa-home"></i> Dashboard</a></li>
-        <li><a href="{{ route('admin.pertanian.index') }}"><i class="fas fa-seedling"></i> Pertanian & Perkebunan</a></li>
+        <li><a href="{{ route('admin.pertanian.index') }}"><i class="fas fa-seedling"></i> Pertanian, Perkebunan, Peternakan & Perikanan</a></li>
         <li><a href="{{ route('admin.pariwisata.index') }}"><i class="fas fa-mountain"></i> Pariwisata</a></li>
         <li><a href="{{ route('admin.umkm.index') }}"><i class="fas fa-store"></i> UMKM</a></li>
         <li><a href="{{ route('admin.galeri.index') }}"><i class="fas fa-images"></i> Galeri</a></li>

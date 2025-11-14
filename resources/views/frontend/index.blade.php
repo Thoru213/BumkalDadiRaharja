@@ -66,7 +66,7 @@
     <div class="cakupan-container">
         <a href="{{ route('cakupan.show', 'pertanian') }}" class="cakupan-item">
             <img src="{{ asset('assets/images/pertanian.jpg') }}" alt="Pertanian" class="cakupan-item-img">
-            <h3>Pertanian & Perkebunan</h3>
+            <h3>Pertanian, Perkebunan, Peternakan & Perikanan</h3>
             <p>Pelajari lebih lanjut mengenai pengelolaan sumber daya alam dan pertanian lokal kami.</p>
         </a>
         <a href="{{ route('cakupan.show', 'pariwisata') }}" class="cakupan-item">
