@@ -35,7 +35,14 @@
             event.preventDefault();
             event.stopPropagation();
             const dropdown = document.getElementById('cakupanDropdown');
-            dropdown.classList.toggle('active');
+            
+            console.log('Dropdown clicked!', dropdown); // Debug log
+            
+            if (dropdown) {
+                // Toggle the active class to expand/collapse
+                const isActive = dropdown.classList.toggle('active');
+                console.log('Dropdown active state:', isActive); // Debug log
+            }
         }
         
         // Close dropdown when clicking outside
@@ -74,7 +81,16 @@
             link.addEventListener('click', (e) => {
                 // Don't close if it's the dropdown trigger
                 if (!e.target.onclick || e.target.onclick.toString().indexOf('toggleDropdown') === -1) {
-                    document.getElementById('navLinks').classList.remove('active');
+                    const navLinks = document.getElementById('navLinks');
+                    const dropdown = document.getElementById('cakupanDropdown');
+                    
+                    // Close the mobile menu
+                    navLinks.classList.remove('active');
+                    
+                    // Also close the dropdown if open
+                    if (dropdown) {
+                        dropdown.classList.remove('active');
+                    }
                 }
             });
         });

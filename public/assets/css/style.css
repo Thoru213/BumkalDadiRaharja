@@ -139,7 +139,7 @@ header.solid-nav .logo-subtitle {
   }
   
   .nav-links.active {
-    max-height: 500px;
+    max-height: 800px; /* Increased to accommodate dropdown expansion */
     padding: 1rem 0;
   }
   
@@ -148,17 +148,33 @@ header.solid-nav .logo-subtitle {
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
   
+  /* Mobile dropdown - make it behave like regular menu items */
+  .nav-links .dropdown {
+    padding: 0; /* Remove padding from dropdown container */
+  }
+  
+  .nav-links .dropdown > a {
+    display: block;
+    padding: 1rem 0; /* Keep consistent padding with other menu items */
+    cursor: pointer; /* Ensure cursor shows it's clickable */
+    pointer-events: auto; /* Make sure it's clickable */
+  }
+  
+  /* Mobile dropdown styling */
   .dropdown-content {
-    position: static;
+    position: static !important;
     box-shadow: none;
     background: rgba(4, 120, 87, 0.9);
-    margin-top: 0;
+    margin: 0;
     border-radius: 0;
     overflow: hidden;
     max-height: 0;
-    opacity: 1;
-    transform: none;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    width: 100%;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: max-height 0.3s ease;
+    display: block;
+    pointer-events: auto !important; /* Enable clicking in mobile */
   }
   
   /* Transparent dropdown when navbar is transparent */
@@ -171,23 +187,24 @@ header.solid-nav .logo-subtitle {
     background: rgba(4, 120, 87, 0.9);
   }
   
+  /* When dropdown is active, show the content */
   .dropdown.active .dropdown-content {
-    max-height: 200px;
-    padding: 0.5rem 0;
+    max-height: 300px; /* Increased for better expansion */
   }
   
   .dropdown-content a {
     padding: 0.8rem 2rem;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: white; /* Ensure text is white in mobile */
+    text-align: center; /* Center the dropdown items */
+  }
+  
+  .dropdown-content a:hover {
+    background-color: rgba(255,255,255,0.1);
   }
   
   .dropdown-content a:last-child {
     border-bottom: none;
-  }
-  
-  .dropdown:hover .dropdown-content,
-  .dropdown.active .dropdown-content {
-    display: block;
   }
 }
 
@@ -196,7 +213,7 @@ header.solid-nav .logo-subtitle {
   position: relative;
 }
 
-/* 🔹 Dropdown Menu */
+/* 🔹 Dropdown Menu - Desktop Default */
 .dropdown-content {
   display: block;
   position: absolute;
@@ -230,13 +247,15 @@ header.solid-nav .logo-subtitle {
   background-color: #e9ecef;
 }
 
-/* 🔹 Click Effect to Show - Slide down + Fade in */
-.dropdown.active .dropdown-content {
-  opacity: 1;
-  transform: translateY(0);
-  max-height: 300px;
-  padding: 0.5rem 0;
-  pointer-events: auto;
+/* 🔹 Desktop: Click Effect to Show - Slide down + Fade in */
+@media (min-width: 769px) {
+  .dropdown.active .dropdown-content {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 300px;
+    pointer-events: auto;
+    padding: 0.5rem 0;
+  }
 }
 
 /* Dropdown arrow animation */
