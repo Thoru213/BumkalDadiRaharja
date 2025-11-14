@@ -42,11 +42,12 @@
                 @endif
                 
                 {{-- Full optimized image (lazy loaded) --}}
-                <img data-src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image')) }}" 
-                     alt="Tentang Kami" 
+                <img src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image')) }}"
+                     data-src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image')) }}"
+                     alt="Tentang Kami"
                      class="tentang-image-full lazy-load"
                      loading="lazy"
-                     style="position: relative; width: 100%; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); opacity: 0; transition: opacity 0.6s ease; z-index: 2;">
+                     style="position: relative; width: 100%; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: opacity 0.6s ease; z-index: 2;">
             </div>
         @endif
         
