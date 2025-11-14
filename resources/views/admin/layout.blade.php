@@ -26,5 +26,7 @@
     <footer>
         @include('admin.footer')
     </footer>
+
+    @stack('scripts')
 </body>
 </html>
