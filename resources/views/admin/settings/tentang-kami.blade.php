@@ -183,7 +183,7 @@
     <div class="settings-card">
         <div class="settings-header">
             <h1>📜 Pengaturan Tentang Kami</h1>
-            <p>Kelola informasi tentang agrowisata Anda yang ditampilkan di halaman depan</p>
+            <p>Kelola informasi tentang BumKal yang ditampilkan di halaman depan</p>
         </div>
         
         <div class="settings-body">
@@ -196,9 +196,9 @@
                            name="title"
                            id="title"
                            class="form-control @error('title') is-invalid @enderror"
-                           value="{{ old('title', App\Models\Setting::get('tentang_kami_title', 'Tentang Agrowisata Kami')) }}"
+                           value="{{ old('title', App\Models\Setting::get('tentang_kami_title', 'Tentang BumKal Kami')) }}"
                            required
-                           placeholder="Contoh: Tentang Agrowisata Kami">
+                           placeholder="Contoh: Tentang BumKal Kami">
                     @error('title')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror

@@ -19,7 +19,7 @@
         
         <!-- Right: Hero Content -->
         <div class="hero-content">
-            <h1>Rasakan Serunya Berkemah di Tengah Perkebunan</h1>
+            <h1>Rasakan Serunya Belajar dan Berkemah di Tengah Perkebunan</h1>
             <p>Jelajahi pengalaman agrowisata terbaik yang menggabungkan pesona bumi perkemahan dengan keasrian perkebunan. Nikmati udara segar, keindahan alam, serta aktivitas edukatif dan rekreasi untuk keluarga dan teman.</p>
         </div>
     </div>
@@ -36,18 +36,18 @@
                 {{-- Tiny blurred placeholder (loads instantly) --}}
                 @if(App\Models\Setting::get('tentang_kami_image_thumb'))
                 <img src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image_thumb')) }}" 
-                     alt="Tentang Kami" 
-                     class="tentang-image-placeholder"
-                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(20px); transform: scale(1.1); z-index: 1;">
+                    alt="Tentang Kami" 
+                    class="tentang-image-placeholder"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(20px); transform: scale(1.1); z-index: 1;">
                 @endif
                 
                 {{-- Full optimized image (lazy loaded) --}}
                 <img src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image')) }}"
-                     data-src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image')) }}"
-                     alt="Tentang Kami"
-                     class="tentang-image-full lazy-load"
-                     loading="lazy"
-                     style="position: relative; width: 100%; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: opacity 0.6s ease; z-index: 2;">
+                    data-src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image')) }}"
+                    alt="Tentang Kami"
+                    class="tentang-image-full lazy-load"
+                    loading="lazy"
+                    style="position: relative; width: 100%; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: opacity 0.6s ease; z-index: 2;">
             </div>
         @endif
         
@@ -67,7 +67,7 @@
         <a href="{{ route('cakupan.show', 'pertanian') }}" class="cakupan-item">
             <img src="{{ asset('assets/images/pertanian.jpg') }}" alt="Pertanian" class="cakupan-item-img">
             <h3>Pertanian, Perkebunan, Peternakan & Perikanan</h3>
-            <p>Pelajari lebih lanjut mengenai pengelolaan sumber daya alam dan pertanian lokal kami.</p>
+            <p>Pelajari lebih lanjut mengenai pengelolaan sumber daya alam lokal kami.</p>
         </a>
         <a href="{{ route('cakupan.show', 'pariwisata') }}" class="cakupan-item">
             <img src="{{ asset('assets/images/pariwisata.jpg') }}" alt="Pariwisata" class="cakupan-item-img">
@@ -85,16 +85,16 @@
 <!-- 🔹 GALERI -->
 <section id="galeri" class="galeri">
     <p style="color: #666; font-size: 1rem; margin-bottom: 0.5rem;">Galeri Foto</p>
-    <h2 style="color: #047857;">Keindahan Agrowisata Kami</h2>
+    <h2 style="color: #047857;">Keindahan BumKal Kami</h2>
     <div class="galeri-grid">
         {{-- Pertanian Images --}}
         @foreach($pertanianData as $item)
             <div class="galeri-item" style="position: relative; overflow: hidden; border-radius: 10px;">
                 <img src="{{ asset($item->gambar) }}"
-                     alt="{{ $item->judul }}"
-                     class="galeri-img"
-                     loading="lazy"
-                     style="width: 100%; height: 100%; object-fit: cover;">
+                    alt="{{ $item->judul }}"
+                    class="galeri-img"
+                    loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="galeri-caption">{{ $item->judul }}</div>
             </div>
         @endforeach
@@ -103,10 +103,10 @@
         @foreach($pariwisataData as $item)
             <div class="galeri-item" style="position: relative; overflow: hidden; border-radius: 10px;">
                 <img src="{{ asset($item->gambar) }}"
-                     alt="{{ $item->judul }}"
-                     class="galeri-img"
-                     loading="lazy"
-                     style="width: 100%; height: 100%; object-fit: cover;">
+                    alt="{{ $item->judul }}"
+                    class="galeri-img"
+                    loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="galeri-caption">{{ $item->judul }}</div>
             </div>
         @endforeach
@@ -128,13 +128,13 @@
             <div class="galeri-item" style="position: relative; overflow: hidden; border-radius: 10px;">
                 {{-- Tiny blurred placeholder --}}
                 @if($item->gambar_thumb)
-                <img src="{{ asset('storage/' . $item->gambar_thumb) }}"
+                <img src="{{ asset($item->gambar_thumb) }}"
                      alt="{{ $item->judul }}"
                      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(20px); transform: scale(1.1); z-index: 1;">
                 @endif
                 
                 {{-- Full image with lazy loading --}}
-                <img data-src="{{ asset('storage/' . $item->gambar) }}"
+                <img data-src="{{ asset($item->gambar) }}"
                      alt="{{ $item->judul }}"
                      class="lazy-load galeri-img"
                      loading="lazy"
@@ -156,7 +156,7 @@
     <p style="color: #666; font-size: 1rem; margin-bottom: 0.5rem; text-align: center;">Ada Pertanyaan?</p>
     <h2 style="text-align: center; margin-bottom: 1rem; color: #047857;">Hubungi Kami</h2>
     <p style="text-align: center; color: #666; margin-bottom: 3rem;">
-        Jika Anda memiliki pertanyaan atau ingin informasi lebih lanjut tentang agrowisata kami, jangan ragu untuk menghubungi kami.
+        Jika Anda memiliki pertanyaan atau ingin informasi lebih lanjut tentang BumKal kami, jangan ragu untuk menghubungi kami.
     </p>
     
     <div class="kontak-container">

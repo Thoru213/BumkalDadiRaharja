@@ -2,7 +2,7 @@
     <div class="footer-container">
         <div class="footer-content">
             <div class="footer-logo">
-                <span class="footer-label">AGROWISATA</span>
+                <span class="footer-label">BUMKAL</span>
                 <h2 class="footer-title">Dadi Raharja</h2>
             </div>
             
@@ -36,6 +36,6 @@
     </div>
     
     <div class="footer-bottom">
-        <p>© {{ date('Y') }} Agrowisata Dadi Raharja. Hak Cipta Dilindungi.</p>
+        <p>© {{ date('Y') }} BumKal Dadi Raharja. Hak Cipta Dilindungi.</p>
     </div>
 </footer>
