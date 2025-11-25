@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Galeri;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Laravel\Facades\Image;
 
 class GaleriController extends Controller
 {
@@ -25,37 +23,19 @@ class GaleriController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // 5MB max
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $galeri = new Galeri();
-        $galeri->judul = $request->judul;
+        $data = $request->only(['judul']);
 
         if ($request->hasFile('gambar')) {
-            $imageFile = $request->file('gambar');
-            $filename = time() . '_' . $imageFile->getClientOriginalName();
-            
-            // Save optimized full image (max 1200px width, 85% quality)
-            $fullImage = Image::read($imageFile)
-                ->scale(width: 1200)
-                ->toJpeg(quality: 85);
-            
-            $fullPath = 'galeri/' . $filename;
-            Storage::disk('public')->put($fullPath, $fullImage);
-            
-            // Save tiny thumbnail for blur placeholder (50px width, 60% quality)
-            $thumbImage = Image::read($imageFile)
-                ->scale(width: 50)
-                ->toJpeg(quality: 60);
-            
-            $thumbPath = 'galeri/thumb_' . $filename;
-            Storage::disk('public')->put($thumbPath, $thumbImage);
-
-            $galeri->gambar = $fullPath;
-            $galeri->gambar_thumb = $thumbPath;
+            $file = $request->file('gambar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/galeri'), $filename);
+            $data['gambar'] = 'uploads/galeri/' . $filename;
         }
 
-        $galeri->save();
+        Galeri::create($data);
 
         return redirect()->route('admin.galeri.index')->with('success', 'Gambar berhasil ditambahkan!');
     }
@@ -69,56 +49,31 @@ class GaleriController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $galeri->judul = $request->judul;
+        $data = $request->only(['judul']);
 
         if ($request->hasFile('gambar')) {
-            // Delete old images
-            if ($galeri->gambar && Storage::disk('public')->exists($galeri->gambar)) {
-                Storage::disk('public')->delete($galeri->gambar);
-            }
-            if ($galeri->gambar_thumb && Storage::disk('public')->exists($galeri->gambar_thumb)) {
-                Storage::disk('public')->delete($galeri->gambar_thumb);
+            if ($galeri->gambar && file_exists(public_path($galeri->gambar))) {
+                unlink(public_path($galeri->gambar));
             }
 
-            $imageFile = $request->file('gambar');
-            $filename = time() . '_' . $imageFile->getClientOriginalName();
-            
-            // Save optimized full image
-            $fullImage = Image::read($imageFile)
-                ->scale(width: 1200)
-                ->toJpeg(quality: 85);
-            
-            $fullPath = 'galeri/' . $filename;
-            Storage::disk('public')->put($fullPath, $fullImage);
-            
-            // Save thumbnail
-            $thumbImage = Image::read($imageFile)
-                ->scale(width: 50)
-                ->toJpeg(quality: 60);
-            
-            $thumbPath = 'galeri/thumb_' . $filename;
-            Storage::disk('public')->put($thumbPath, $thumbImage);
-
-            $galeri->gambar = $fullPath;
-            $galeri->gambar_thumb = $thumbPath;
+            $file = $request->file('gambar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/galeri'), $filename);
+            $data['gambar'] = 'uploads/galeri/' . $filename;
         }
 
-        $galeri->save();
+        $galeri->update($data);
 
         return redirect()->route('admin.galeri.index')->with('success', 'Gambar berhasil diupdate!');
     }
 
     public function destroy(Galeri $galeri)
     {
-        // Delete images
-        if ($galeri->gambar && Storage::disk('public')->exists($galeri->gambar)) {
-            Storage::disk('public')->delete($galeri->gambar);
-        }
-        if ($galeri->gambar_thumb && Storage::disk('public')->exists($galeri->gambar_thumb)) {
-            Storage::disk('public')->delete($galeri->gambar_thumb);
+        if ($galeri->gambar && file_exists(public_path($galeri->gambar))) {
+            unlink(public_path($galeri->gambar));
         }
 
         $galeri->delete();

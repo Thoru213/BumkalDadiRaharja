@@ -123,22 +123,14 @@
             </div>
         @endforeach
         
-        {{-- Gallery Images with Blur-up Effect --}}
+        {{-- Gallery Images --}}
         @foreach($galeriData as $item)
             <div class="galeri-item" style="position: relative; overflow: hidden; border-radius: 10px;">
-                {{-- Tiny blurred placeholder --}}
-                @if($item->gambar_thumb)
-                <img src="{{ asset('storage/' . $item->gambar_thumb) }}"
+                <img src="{{ asset($item->gambar) }}"
                      alt="{{ $item->judul }}"
-                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(20px); transform: scale(1.1); z-index: 1;">
-                @endif
-                
-                {{-- Full image with lazy loading --}}
-                <img data-src="{{ asset('storage/' . $item->gambar) }}"
-                     alt="{{ $item->judul }}"
-                     class="lazy-load galeri-img"
+                     class="galeri-img"
                      loading="lazy"
-                     style="position: relative; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.6s ease; z-index: 2;">
+                     style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="galeri-caption">{{ $item->judul }}</div>
             </div>
         @endforeach

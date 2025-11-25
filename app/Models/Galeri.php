@@ -8,7 +8,6 @@ class Galeri extends Model
 {
     protected $fillable = [
         'judul',
-        'gambar',
-        'gambar_thumb'
+        'gambar'
     ];
 }
