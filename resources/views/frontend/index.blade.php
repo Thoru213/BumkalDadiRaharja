@@ -128,13 +128,13 @@
             <div class="galeri-item" style="position: relative; overflow: hidden; border-radius: 10px;">
                 {{-- Tiny blurred placeholder --}}
                 @if($item->gambar_thumb)
-                <img src="{{ asset($item->gambar_thumb) }}"
+                <img src="{{ asset('storage/' . $item->gambar_thumb) }}"
                      alt="{{ $item->judul }}"
                      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(20px); transform: scale(1.1); z-index: 1;">
                 @endif
                 
                 {{-- Full image with lazy loading --}}
-                <img data-src="{{ asset($item->gambar) }}"
+                <img data-src="{{ asset('storage/' . $item->gambar) }}"
                      alt="{{ $item->judul }}"
                      class="lazy-load galeri-img"
                      loading="lazy"

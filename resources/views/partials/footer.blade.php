@@ -36,6 +36,6 @@
     </div>
     
     <div class="footer-bottom">
-        <p>© {{ date('Y') }} BumKal Dadi Raharja. Hak Cipta Dilindungi.</p>
+        <p>© {{ date('Y') }} Bumi Kalurahan Dadi Raharja. Hak Cipta Dilindungi.</p>
     </div>
 </footer>
