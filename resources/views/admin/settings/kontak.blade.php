@@ -220,6 +220,20 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="phone_name">👤 Nama Pemilik Nomor</label>
+                    <input type="text"
+                           name="phone_name"
+                           id="phone_name"
+                           class="form-control @error('phone_name') is-invalid @enderror"
+                           value="{{ old('phone_name', App\Models\Setting::get('kontak_phone_name', '')) }}"
+                           placeholder="Contoh: Pak Budi, Customer Service, dll">
+                    @error('phone_name')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                    <small class="form-text">Nama ini akan ditampilkan dalam kurung di sebelah nomor telepon. Kosongkan jika tidak perlu</small>
+                </div>
+
+                <div class="form-group">
                     <label for="email">✉️ Email</label>
                     <input type="email"
                            name="email"

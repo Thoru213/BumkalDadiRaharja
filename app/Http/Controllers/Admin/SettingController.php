@@ -73,6 +73,7 @@ class SettingController extends Controller
     {
         $request->validate([
             'phone' => 'required|string|max:20',
+            'phone_name' => 'nullable|string|max:100',
             'email' => 'required|email|max:255',
             'address' => 'required|string',
             'maps_embed' => 'nullable|string',
@@ -81,6 +82,7 @@ class SettingController extends Controller
         ]);
 
         Setting::set('kontak_phone', $request->phone, 'text', 'kontak');
+        Setting::set('kontak_phone_name', $request->phone_name, 'text', 'kontak');
         Setting::set('kontak_email', $request->email, 'text', 'kontak');
         Setting::set('kontak_address', $request->address, 'textarea', 'kontak');
         Setting::set('kontak_maps_embed', $request->maps_embed, 'textarea', 'kontak');
