@@ -9,7 +9,7 @@
         <!-- Left: YouTube Video -->
         <div class="hero-video fade-in-up">
             <iframe 
-                src="https://www.youtube.com/embed/D9vsEqrsZxU?si=382Y8TfUOubfdUE4" 
+                src="https://www.youtube.com/embed/Q6fF-Dn8Nos?si=tlY-8OsOK5YQUU85" 
                 title="YouTube video player" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -202,12 +202,25 @@
                 <div class="kontak-icon">📞</div>
                 <div>
                     <h3>Telepon</h3>
-                    <p>
-                        {{ App\Models\Setting::get('kontak_phone', '+62 123 4567 890') }}
-                        @if(App\Models\Setting::get('kontak_phone_name'))
-                            <span style="color: #6b7280;">({{ App\Models\Setting::get('kontak_phone_name') }})</span>
-                        @endif
-                    </p>
+                    @php
+                        $contactsJson = App\Models\Setting::get('kontak_contacts', '[]');
+                        $contacts = json_decode($contactsJson, true);
+                    @endphp
+                    
+                    @if($contacts && count($contacts) > 0)
+                        @foreach($contacts as $contact)
+                            @if(!empty($contact['phone']))
+                                <p>
+                                    {{ $contact['phone'] }}
+                                    @if(!empty($contact['name']))
+                                        <span style="color: #6b7280;">({{ $contact['name'] }})</span>
+                                    @endif
+                                </p>
+                            @endif
+                        @endforeach
+                    @else
+                        <p>{{ App\Models\Setting::get('kontak_phone', '+62 123 4567 890') }}</p>
+                    @endif
                 </div>
             </div>
             

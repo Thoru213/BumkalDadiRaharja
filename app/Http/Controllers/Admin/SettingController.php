@@ -72,8 +72,8 @@ class SettingController extends Controller
     public function updateKontak(Request $request)
     {
         $request->validate([
-            'phone' => 'required|string|max:20',
-            'phone_name' => 'nullable|string|max:100',
+            'contacts.*.phone' => 'required|string|max:20',
+            'contacts.*.name' => 'nullable|string|max:100',
             'email' => 'required|email|max:255',
             'address' => 'required|string',
             'maps_embed' => 'nullable|string',
@@ -81,8 +81,8 @@ class SettingController extends Controller
             'instagram' => 'nullable|url',
         ]);
 
-        Setting::set('kontak_phone', $request->phone, 'text', 'kontak');
-        Setting::set('kontak_phone_name', $request->phone_name, 'text', 'kontak');
+        // Store contacts as JSON
+        Setting::set('kontak_contacts', json_encode($request->contacts ?? []), 'text', 'kontak');
         Setting::set('kontak_email', $request->email, 'text', 'kontak');
         Setting::set('kontak_address', $request->address, 'textarea', 'kontak');
         Setting::set('kontak_maps_embed', $request->maps_embed, 'textarea', 'kontak');

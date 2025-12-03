@@ -185,6 +185,71 @@
         justify-content: center;
         font-weight: bold;
     }
+    
+    /* Contact Rows Styles */
+    .contact-container {
+        margin-bottom: 1.5rem;
+    }
+    
+    .contact-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        align-items: flex-start;
+    }
+    
+    .contact-field {
+        flex: 1;
+    }
+    
+    .contact-field label {
+        display: block;
+        font-weight: 600;
+        color: #047857;
+        margin-bottom: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-remove-contact {
+        background: #dc2626;
+        color: white;
+        padding: 0.85rem 1rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1.9rem;
+        white-space: nowrap;
+    }
+    
+    .btn-remove-contact:hover {
+        background: #b91c1c;
+        transform: translateY(-2px);
+    }
+    
+    .btn-add-contact {
+        background: #047857;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .btn-add-contact:hover {
+        background: #059669;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    }
 </style>
 
 <div class="settings-page">
@@ -204,34 +269,57 @@
             <form action="{{ route('admin.settings.kontak.update') }}" method="POST">
                 @csrf
                 
-                <div class="form-group">
-                    <label for="phone">📞 Nomor Telepon</label>
-                    <input type="text"
-                           name="phone"
-                           id="phone"
-                           class="form-control @error('phone') is-invalid @enderror"
-                           value="{{ old('phone', App\Models\Setting::get('kontak_phone', '+62 123 4567 890')) }}"
-                           required
-                           placeholder="+62 812 3456 7890">
-                    @error('phone')
-                        <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                    <small class="form-text">Format: +62 untuk Indonesia, atau 0812-xxxx-xxxx</small>
+                <div class="section-divider" style="margin-top: 0; padding-top: 0; border: none;">
+                    <h4 class="section-title">📞 Kontak Person</h4>
                 </div>
-
-                <div class="form-group">
-                    <label for="phone_name">👤 Nama Pemilik Nomor</label>
-                    <input type="text"
-                           name="phone_name"
-                           id="phone_name"
-                           class="form-control @error('phone_name') is-invalid @enderror"
-                           value="{{ old('phone_name', App\Models\Setting::get('kontak_phone_name', '')) }}"
-                           placeholder="Contoh: Pak Budi, Customer Service, dll">
-                    @error('phone_name')
-                        <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                    <small class="form-text">Nama ini akan ditampilkan dalam kurung di sebelah nomor telepon. Kosongkan jika tidak perlu</small>
+                
+                <div id="contactsContainer" class="contact-container">
+                    @php
+                        $contactsJson = App\Models\Setting::get('kontak_contacts', '[]');
+                        $contacts = json_decode($contactsJson, true) ?: [['phone' => '', 'name' => '']];
+                    @endphp
+                    
+                    @foreach($contacts as $index => $contact)
+                    <div class="contact-row">
+                        <div class="contact-field">
+                            <label for="contacts_{{ $index }}_phone">📞 Nomor Telepon</label>
+                            <input type="text"
+                                   id="contacts_{{ $index }}_phone"
+                                   name="contacts[{{ $index }}][phone]"
+                                   class="form-control @error('contacts.'.$index.'.phone') is-invalid @enderror"
+                                   value="{{ old('contacts.'.$index.'.phone', $contact['phone'] ?? '') }}"
+                                   required
+                                   placeholder="+62 812 3456 7890">
+                            @error('contacts.'.$index.'.phone')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="contact-field">
+                            <label for="contacts_{{ $index }}_name">👤 Nama Pemilik</label>
+                            <input type="text"
+                                   id="contacts_{{ $index }}_name"
+                                   name="contacts[{{ $index }}][name]"
+                                   class="form-control @error('contacts.'.$index.'.name') is-invalid @enderror"
+                                   value="{{ old('contacts.'.$index.'.name', $contact['name'] ?? '') }}"
+                                   placeholder="Nama (Opsional)">
+                            @error('contacts.'.$index.'.name')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        @if($index > 0)
+                        <button type="button" class="btn-remove-contact" onclick="removeContact(this)">🗑️ Hapus</button>
+                        @endif
+                    </div>
+                    @endforeach
                 </div>
+                
+                <button type="button" class="btn-add-contact" onclick="addContact()">
+                    <span>➕</span> Tambah Kontak
+                </button>
+                
+                <small class="form-text" style="display: block; margin-top: -1rem; margin-bottom: 2rem;">
+                    💡 Nama akan ditampilkan dalam kurung di sebelah nomor telepon. Kosongkan jika tidak perlu
+                </small>
 
                 <div class="form-group">
                     <label for="email">✉️ Email</label>
@@ -326,4 +414,45 @@
         </div>
     </div>
 </div>
+
+<script>
+let contactIndex = parseInt('{{ count($contacts) }}');
+
+function addContact() {
+    const container = document.getElementById('contactsContainer');
+    const newRow = document.createElement('div');
+    newRow.className = 'contact-row';
+    newRow.innerHTML = `
+        <div class="contact-field">
+            <label for="contact_phone_${contactIndex}">Nomor Telepon</label>
+            <input type="text"
+                   id="contact_phone_${contactIndex}"
+                   name="contacts[${contactIndex}][phone]"
+                   class="form-control"
+                   required
+                   placeholder="+62 812 3456 7890">
+        </div>
+        <div class="contact-field">
+            <label for="contact_name_${contactIndex}">Nama Pemilik</label>
+            <input type="text"
+                   id="contact_name_${contactIndex}"
+                   name="contacts[${contactIndex}][name]"
+                   class="form-control"
+                   placeholder="Nama (Opsional)">
+        </div>
+        <button type="button" class="btn-remove-contact" onclick="removeContact(this)">🗑️ Hapus</button>
+    `;
+    container.appendChild(newRow);
+    contactIndex++;
+}
+
+function removeContact(button) {
+    const row = button.closest('.contact-row');
+    row.style.opacity = '0';
+    row.style.transform = 'translateX(-20px)';
+    setTimeout(() => {
+        row.remove();
+    }, 300);
+}
+</script>
 @endsection
