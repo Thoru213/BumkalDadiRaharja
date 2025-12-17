@@ -35,15 +35,15 @@
             <div class="fade-in-up" style="flex: 0 0 45%; min-width: 0; position: relative; overflow: hidden; border-radius: 15px;">
                 {{-- Tiny blurred placeholder (loads instantly) --}}
                 @if(App\Models\Setting::get('tentang_kami_image_thumb'))
-                <img src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image_thumb')) }}" 
+                <img src="{{ asset(App\Models\Setting::get('tentang_kami_image_thumb')) }}" 
                     alt="Tentang Kami" 
                     class="tentang-image-placeholder"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(20px); transform: scale(1.1); z-index: 1;">
                 @endif
                 
                 {{-- Full optimized image (lazy loaded) --}}
-                <img src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image')) }}"
-                    data-src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image')) }}"
+                <img src="{{ asset(App\Models\Setting::get('tentang_kami_image')) }}"
+                    data-src="{{ asset(App\Models\Setting::get('tentang_kami_image')) }}"
                     alt="Tentang Kami"
                     class="tentang-image-full lazy-load"
                     loading="lazy"

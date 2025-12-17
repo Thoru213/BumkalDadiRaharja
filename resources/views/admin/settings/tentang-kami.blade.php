@@ -222,7 +222,7 @@
                     <label for="image">🖼️ Gambar Ilustrasi</label>
                     @if(App\Models\Setting::get('tentang_kami_image'))
                         <div class="image-preview">
-                            <img src="{{ asset('storage/' . App\Models\Setting::get('tentang_kami_image')) }}"
+                            <img src="{{ asset(App\Models\Setting::get('tentang_kami_image')) }}"
                                  alt="Tentang Kami">
                             <p style="margin-top: 0.75rem; color: #6b7280; font-size: 0.875rem;">Gambar saat ini</p>
                         </div>
@@ -233,7 +233,7 @@
                            class="form-control @error('image') is-invalid @enderror"
                            accept="image/*"
                            style="margin-top: 1rem;">
-                    <small class="form-text">📏 Ukuran maksimal: 2MB • Format: JPG, PNG, GIF • Resolusi rekomendasi: 1200x600px</small>
+                    <small class="form-text">📏 Ukuran maksimal: 5MB • Format: JPG, PNG, GIF • Resolusi rekomendasi: 1200x600px</small>
                     @error('image')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror

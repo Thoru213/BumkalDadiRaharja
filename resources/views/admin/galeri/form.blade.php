@@ -25,7 +25,7 @@
             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #047857;">🖼️ Gambar</label>
             @if(isset($galeri) && $galeri->gambar)
                 <div style="margin-bottom: 1rem; padding: 1rem; background: #f9fafb; border-radius: 8px; text-align: center;">
-                    <img src="{{ asset('storage/' . $galeri->gambar) }}" alt="{{ $galeri->judul }}" style="max-width: 300px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <img src="{{ asset($galeri->gambar) }}" alt="{{ $galeri->judul }}" style="max-width: 300px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                     <p style="margin-top: 0.75rem; color: #6b7280; font-size: 0.875rem;">Gambar saat ini</p>
                 </div>
             @endif

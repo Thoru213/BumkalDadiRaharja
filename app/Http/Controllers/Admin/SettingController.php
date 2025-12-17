@@ -31,34 +31,39 @@ class SettingController extends Controller
             $oldImage = Setting::get('tentang_kami_image');
             $oldThumb = Setting::get('tentang_kami_image_thumb');
             
-            if ($oldImage && Storage::disk('public')->exists($oldImage)) {
-                Storage::disk('public')->delete($oldImage);
+            if ($oldImage && file_exists(public_path($oldImage))) {
+                unlink(public_path($oldImage));
             }
-            if ($oldThumb && Storage::disk('public')->exists($oldThumb)) {
-                Storage::disk('public')->delete($oldThumb);
+            if ($oldThumb && file_exists(public_path($oldThumb))) {
+                unlink(public_path($oldThumb));
             }
 
             $imageFile = $request->file('image');
-            $filename = time() . '_' . $imageFile->getClientOriginalName();
+            $filename = time() . '_' . str_replace(' ', '_', $imageFile->getClientOriginalName());
+            
+            // Create directory if not exists
+            if (!file_exists(public_path('uploads/tentang-kami'))) {
+                mkdir(public_path('uploads/tentang-kami'), 0755, true);
+            }
             
             // Save optimized full image (max 1200px width, 85% quality)
             $fullImage = Image::read($imageFile)
                 ->scale(width: 1200)
                 ->toJpeg(quality: 85);
             
-            $fullPath = 'tentang-kami/' . $filename;
-            Storage::disk('public')->put($fullPath, $fullImage);
+            $fullPath = public_path('uploads/tentang-kami/' . $filename);
+            file_put_contents($fullPath, $fullImage);
             
             // Save tiny thumbnail for blur placeholder (50px width, 60% quality)
             $thumbImage = Image::read($imageFile)
                 ->scale(width: 50)
                 ->toJpeg(quality: 60);
             
-            $thumbPath = 'tentang-kami/thumb_' . $filename;
-            Storage::disk('public')->put($thumbPath, $thumbImage);
+            $thumbPath = public_path('uploads/tentang-kami/thumb_' . $filename);
+            file_put_contents($thumbPath, $thumbImage);
 
-            Setting::set('tentang_kami_image', $fullPath, 'image', 'tentang_kami');
-            Setting::set('tentang_kami_image_thumb', $thumbPath, 'image', 'tentang_kami');
+            Setting::set('tentang_kami_image', 'uploads/tentang-kami/' . $filename, 'image', 'tentang_kami');
+            Setting::set('tentang_kami_image_thumb', 'uploads/tentang-kami/thumb_' . $filename, 'image', 'tentang_kami');
         }
 
         return redirect()->back()->with('success', 'Tentang Kami berhasil diupdate!');
