@@ -26,8 +26,10 @@ class SettingSeeder extends Seeder
             
             // Kontak
             [
-                'key' => 'kontak_phone',
-                'value' => '+62 123 4567 890',
+                'key' => 'kontak_contacts',
+                'value' => json_encode([
+                    ['phone' => '+62 123 4567 890', 'name' => '']
+                ]),
                 'type' => 'text',
                 'group' => 'kontak',
             ],
@@ -44,8 +46,20 @@ class SettingSeeder extends Seeder
                 'group' => 'kontak',
             ],
             [
-                'key' => 'kontak_maps_url',
-                'value' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.5!2d107.123!3d-6.789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDcnMjAuNCJTIDEwN8KwMDcnMjIuOCJF!5e0!3m2!1sen!2sid!4v1234567890',
+                'key' => 'kontak_maps_embed',
+                'value' => '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.5!2d107.123!3d-6.789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDcnMjAuNCJTIDEwN8KwMDcnMjIuOCJF!5e0!3m2!1sen!2sid!4v1234567890" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+                'type' => 'textarea',
+                'group' => 'kontak',
+            ],
+            [
+                'key' => 'kontak_facebook',
+                'value' => '',
+                'type' => 'text',
+                'group' => 'kontak',
+            ],
+            [
+                'key' => 'kontak_instagram',
+                'value' => '',
                 'type' => 'text',
                 'group' => 'kontak',
             ],
@@ -57,5 +71,7 @@ class SettingSeeder extends Seeder
                 $setting
             );
         }
+
+        $this->command->info('Settings berhasil dibuat/diupdate');
     }
 }
