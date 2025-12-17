@@ -24,10 +24,6 @@
             
             <li><a href="{{ route('home') }}#galeri">Galeri</a></li>
             <li><a href="{{ route('home') }}#kontak">Kontak</a></li>
-            
-            @auth
-                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            @endauth
         </ul>
     </nav>
 </header>
