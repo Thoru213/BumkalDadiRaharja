@@ -30,9 +30,9 @@
     <!-- <p style="color: #666; font-size: 1rem; margin-bottom: 0.5rem; text-align: center;">Mengenal Lebih Dekat</p> -->
     <h2 class="fade-in-up" style="color: #047857; text-align: center; margin-bottom: 3rem;">{{ App\Models\Setting::get('tentang_kami_title', 'Tentang Agrowisata Kami') }}</h2>
     
-    <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: flex-start; max-width: 1200px; margin: 0 auto;">
+    <div style="max-width: 1200px; margin: 0 auto;">
         @if(App\Models\Setting::get('tentang_kami_image'))
-            <div class="fade-in-up" style="flex: 0 0 45%; min-width: 300px; position: relative; overflow: hidden; border-radius: 15px;">
+            <div class="fade-in-up" style="float: left; width: 45%; max-width: 500px; margin-right: 3rem; margin-bottom: 2rem; position: relative; overflow: hidden; border-radius: 15px;">
                 {{-- Tiny blurred placeholder (loads instantly) --}}
                 @if(App\Models\Setting::get('tentang_kami_image_thumb'))
                 <img src="{{ asset(App\Models\Setting::get('tentang_kami_image_thumb')) }}" 
@@ -51,11 +51,12 @@
             </div>
         @endif
         
-        <div class="fade-in-up" style="flex: 1; min-width: 0;">
+        <div class="fade-in-up">
             <p style="font-size: 1.1rem; line-height: 1.8; color: #4b5563; text-align: justify;">
                 {!! nl2br(e(App\Models\Setting::get('tentang_kami_description', 'Agrowisata Dadi Raharja Bumkal Margodadi adalah wisata yang didirikan dengan memanfaatkan lahan milik Bumi Kalurahan (Bumkal) dan menggali potensi sumber daya di sekitar. Agrowisata ini berfokus pada 3 bidang yakni Agrowisata, Usaha Mikro Kecil dan Menengah (UMKM), serta Perkebunan, Pertanian, Perikanan, dan lain-lain.'))) !!}
             </p>
         </div>
+        <div style="clear: both;"></div>
     </div>
 </section>
 

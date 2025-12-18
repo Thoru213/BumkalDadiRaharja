@@ -853,20 +853,12 @@ section p {
   }
   
   /* Tentang Kami responsive - stack vertically on mobile */
-  #tentang > div {
-    flex-direction: column !important;
-    gap: 2rem !important;
-  }
-  
-  #tentang > div > div {
-    flex: 1 1 100% !important;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  /* Tentang Kami responsive - adjust proportions on tablets */
-  #tentang > div {
-    gap: 2rem !important;
+  #tentang > div > div:first-child {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 1.5rem !important;
   }
 }
 
