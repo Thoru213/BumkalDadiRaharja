@@ -30,9 +30,9 @@
     <!-- <p style="color: #666; font-size: 1rem; margin-bottom: 0.5rem; text-align: center;">Mengenal Lebih Dekat</p> -->
     <h2 class="fade-in-up" style="color: #047857; text-align: center; margin-bottom: 3rem;">{{ App\Models\Setting::get('tentang_kami_title', 'Tentang Agrowisata Kami') }}</h2>
     
-    <div style="display: flex; gap: 3rem; align-items: flex-start; max-width: 1200px; margin: 0 auto;">
+    <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: flex-start; max-width: 1200px; margin: 0 auto;">
         @if(App\Models\Setting::get('tentang_kami_image'))
-            <div class="fade-in-up" style="flex: 0 0 45%; min-width: 0; position: relative; overflow: hidden; border-radius: 15px;">
+            <div class="fade-in-up" style="flex: 0 0 45%; min-width: 300px; position: relative; overflow: hidden; border-radius: 15px;">
                 {{-- Tiny blurred placeholder (loads instantly) --}}
                 @if(App\Models\Setting::get('tentang_kami_image_thumb'))
                 <img src="{{ asset(App\Models\Setting::get('tentang_kami_image_thumb')) }}" 
@@ -187,7 +187,7 @@
     <div class="kontak-container">
         <!-- Left: Google Maps -->
         <div class="kontak-map fade-in-up">
-            {!! App\Models\Setting::get('kontak_maps_embed', '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.5!2d107.123!3d-6.789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDcnMjAuNCJTIDEwN8KwMDcnMjIuOCJF!5e0!3m2!1sen!2sid!4v1234567890" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" title="Lokasi Agrowisata"></iframe>') !!}
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2295.654528912591!2d110.28933516704176!3d-7.7393450968146285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7af701a043e253%3A0x64d147418ce70bf!2sAgrowisata%20Dadi%20Raharja%20Bumkal%20Margodadi!5e1!3m2!1sid!2sid!4v1762062466015!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>        <!-- Right: Contact Info -->
         <div class="kontak-info fade-in-up">
             <div class="kontak-item">

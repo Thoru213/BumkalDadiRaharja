@@ -81,7 +81,6 @@ class SettingController extends Controller
             'contacts.*.name' => 'nullable|string|max:100',
             'email' => 'required|email|max:255',
             'address' => 'required|string',
-            'maps_embed' => 'nullable|string',
             'facebook' => 'nullable|url',
             'instagram' => 'nullable|url',
         ]);
@@ -90,7 +89,6 @@ class SettingController extends Controller
         Setting::set('kontak_contacts', json_encode($request->contacts ?? []), 'text', 'kontak');
         Setting::set('kontak_email', $request->email, 'text', 'kontak');
         Setting::set('kontak_address', $request->address, 'textarea', 'kontak');
-        Setting::set('kontak_maps_embed', $request->maps_embed, 'textarea', 'kontak');
         Setting::set('kontak_facebook', $request->facebook, 'text', 'kontak');
         Setting::set('kontak_instagram', $request->instagram, 'text', 'kontak');
 

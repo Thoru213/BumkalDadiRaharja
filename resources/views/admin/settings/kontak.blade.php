@@ -350,26 +350,6 @@
                     <small class="form-text">Tulis alamat lengkap termasuk kode pos</small>
                 </div>
 
-                <div class="form-group">
-                    <label for="maps_embed">🗺️ Google Maps Embed Code</label>
-                    <textarea name="maps_embed"
-                              id="maps_embed"
-                              rows="5"
-                              class="form-control @error('maps_embed') is-invalid @enderror"
-                              placeholder='<iframe src="https://www.google.com/maps/embed?pb=..." width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>'>{{ old('maps_embed', App\Models\Setting::get('kontak_maps_embed', '')) }}</textarea>
-                    <small class="form-text">
-                        💡 <strong>Cara mendapatkan:</strong><br>
-                        1. Buka <a href="https://www.google.com/maps" target="_blank" style="color: #047857; font-weight: 600;">Google Maps</a><br>
-                        2. Cari lokasi Anda<br>
-                        3. Klik <strong>Share</strong> → Pilih <strong>Embed a map</strong><br>
-                        4. Klik <strong>Copy HTML</strong><br>
-                        5. Paste kode HTML lengkap di sini (termasuk tag &lt;iframe&gt;)
-                    </small>
-                    @error('maps_embed')
-                        <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-
                 <div class="section-divider">
                     <h4 class="section-title">🌐 Media Sosial (Opsional)</h4>
                 </div>
