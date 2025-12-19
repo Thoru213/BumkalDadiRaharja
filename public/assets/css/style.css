@@ -661,28 +661,73 @@ section p {
 /* Responsive for mobile */
 @media (max-width: 768px) {
   .cakupan-cards {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
     padding: 0 1rem;
   }
   
   .facility-card {
-    height: 280px;
+    height: 200px;
   }
   
   .facility-card-title {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+    line-height: 1.1;
   }
   
   .facility-card-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
   }
   
   .facility-card-arrow {
-    width: 40px;
-    height: 40px;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    width: 36px;
+    height: 36px;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .facility-card-overlay {
+    padding: 1rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .cakupan-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.3rem;
+    padding: 0 0.5rem;
+  }
+  
+  .facility-card {
+    height: 180px;
+  }
+  
+  .facility-card-title {
+    font-size: 0.85rem;
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+  }
+  
+  .facility-card-subtitle {
+    font-size: 0.65rem;
+  }
+  
+  .facility-card-arrow {
+    width: 28px;
+    height: 28px;
+    bottom: 0.75rem;
+    right: 0.75rem;
+  }
+  
+  .facility-card-arrow svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .facility-card-overlay {
+    padding: 0.75rem;
   }
 }
 
