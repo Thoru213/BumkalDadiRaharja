@@ -69,8 +69,7 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-    // @ts-nocheck
-    /* eslint-disable */
+
     document.addEventListener('DOMContentLoaded', function() {
         // Data from server
         const fasilitasData = {
@@ -90,9 +89,9 @@
                     datasets: [{
                         data: [fasilitasData.pertanian, fasilitasData.pariwisata, fasilitasData.umkm],
                         backgroundColor: [
-                            '#4CAF50',  // Green
-                            '#2196F3',  // Blue
-                            '#FF9800'   // Orange
+                            '#4CAF50',
+                            '#2196F3',
+                            '#FF9800'
                         ],
                         borderColor: '#ffffff',
                         borderWidth: 2
@@ -135,10 +134,10 @@
                     datasets: [{
                         data: [fasilitasData.pertanian, fasilitasData.pariwisata, fasilitasData.umkm, fasilitasData.galeri],
                         backgroundColor: [
-                            '#4CAF50',  // Green
-                            '#2196F3',  // Blue
-                            '#FF9800',  // Orange
-                            '#9C27B0'   // Purple
+                            '#4CAF50',
+                            '#2196F3',
+                            '#FF9800',
+                            '#9C27B0'
                         ],
                         borderColor: '#ffffff',
                         borderWidth: 2

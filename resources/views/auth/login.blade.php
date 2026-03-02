@@ -217,13 +217,6 @@
             
             <button type="submit">Masuk</button>
         </form>
-        
-        <!-- @if (Route::has('password.request'))
-            <div class="forgot-password">
-                <a href="{{ route('password.request') }}">Lupa Password?</a>
-            </div>
-        @endif -->
-        
         <div class="back-link">
             <a href="{{ url('/') }}">← Kembali ke Beranda</a>
         </div>

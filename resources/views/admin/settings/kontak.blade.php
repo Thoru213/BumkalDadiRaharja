@@ -185,8 +185,7 @@
         justify-content: center;
         font-weight: bold;
     }
-    
-    /* Contact Rows Styles */
+
     .contact-container {
         margin-bottom: 1.5rem;
     }

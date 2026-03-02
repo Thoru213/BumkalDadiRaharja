@@ -25,23 +25,19 @@
     </div>
 </section>
 
-<!-- 🔹 TENTANG KAMI -->
+<!--  TENTANG KAMI -->
 <section id="tentang" class="tentang">
-    <!-- <p style="color: #666; font-size: 1rem; margin-bottom: 0.5rem; text-align: center;">Mengenal Lebih Dekat</p> -->
     <h2 class="fade-in-up" style="color: #047857; text-align: center; margin-bottom: 3rem;">{{ App\Models\Setting::get('tentang_kami_title', 'Tentang Agrowisata Kami') }}</h2>
     
     <div style="max-width: 1200px; margin: 0 auto;">
         @if(App\Models\Setting::get('tentang_kami_image'))
             <div class="fade-in-up" style="float: left; width: 45%; max-width: 500px; margin-right: 3rem; margin-bottom: 2rem; position: relative; overflow: hidden; border-radius: 15px;">
-                {{-- Tiny blurred placeholder (loads instantly) --}}
                 @if(App\Models\Setting::get('tentang_kami_image_thumb'))
                 <img src="{{ asset(App\Models\Setting::get('tentang_kami_image_thumb')) }}" 
                     alt="Tentang Kami" 
                     class="tentang-image-placeholder"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(20px); transform: scale(1.1); z-index: 1;">
                 @endif
-                
-                {{-- Full optimized image (lazy loaded) --}}
                 <img src="{{ asset(App\Models\Setting::get('tentang_kami_image')) }}"
                     data-src="{{ asset(App\Models\Setting::get('tentang_kami_image')) }}"
                     alt="Tentang Kami"
@@ -60,7 +56,7 @@
     </div>
 </section>
 
-<!-- 🔹 CAKUPAN -->
+<!--  CAKUPAN -->
 <section id="cakupan" class="cakupan">
     <h2 class="fade-in-up" style="color: #047857; text-align: center; margin-bottom: 3rem;">Bidang Unggulan Kami</h2>
     <div class="cakupan-cards">
@@ -105,9 +101,8 @@
     </div>
 </section>
 
-<!-- 🔹 GALERI -->
+<!--  GALERI -->
 <section id="galeri" class="galeri">
-    <!-- <p style="color: #666; font-size: 1rem; margin-bottom: 0.5rem;">Galeri Foto</p> -->
     <h2 class="fade-in-up" style="color: #047857;">Keindahan BumKal Kami</h2>
     <div class="galeri-grid" id="galeriGrid">
         {{-- Pertanian Images --}}
@@ -177,19 +172,17 @@
     @endif
 </section>
 
-<!-- 🔹 KONTAK -->
+<!--  KONTAK -->
 <section id="kontak" class="kontak">
-    <!-- <p class="fade-in-up" style="color: #666; font-size: 1rem; margin-bottom: 0.5rem; text-align: center;">Ada Pertanyaan?</p> -->
     <h2 class="fade-in-up" style="text-align: center; margin-bottom: 1rem; color: #047857;">Hubungi Kami</h2>
     <p class="fade-in-up" style="text-align: center; color: #666; margin-bottom: 3rem;">
         Jika Anda memiliki pertanyaan atau ingin informasi lebih lanjut tentang BumKal kami, jangan ragu untuk menghubungi kami.
     </p>
     
     <div class="kontak-container">
-        <!-- Left: Google Maps -->
         <div class="kontak-map fade-in-up">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2295.654528912591!2d110.28933516704176!3d-7.7393450968146285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7af701a043e253%3A0x64d147418ce70bf!2sAgrowisata%20Dadi%20Raharja%20Bumkal%20Margodadi!5e1!3m2!1sid!2sid!4v1762062466015!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>        <!-- Right: Contact Info -->
+        </div>
         <div class="kontak-info fade-in-up">
             <div class="kontak-item">
                 <div class="kontak-icon">📍</div>
@@ -247,7 +240,6 @@
 
 @push('scripts')
 <script>
-// Toggle Gallery View More/Less
 function toggleGallery() {
     const grid = document.getElementById('galeriGrid');
     const items = grid.querySelectorAll('.galeri-item');
@@ -255,29 +247,25 @@ function toggleGallery() {
     const btnIcon = document.getElementById('btnIcon');
     
     if (grid.classList.contains('collapsed')) {
-        // Expand - show all items with smooth animation
         grid.classList.remove('collapsed');
         
         items.forEach((item, index) => {
             if (index >= 3) {
-                // Set initial hidden state
                 item.style.display = 'block';
                 item.style.opacity = '0';
                 item.style.transform = 'translateY(30px) scale(0.95)';
-                
-                // Animate in with staggered delay
+
                 setTimeout(() => {
                     item.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
                     item.style.opacity = '1';
                     item.style.transform = 'translateY(0) scale(1)';
-                }, (index - 3) * 80); // Stagger by 80ms
+                }, (index - 3) * 80);
             }
         });
         
         btnText.textContent = 'Lihat Lebih Sedikit';
         btnIcon.style.transform = 'rotate(180deg)';
     } else {
-        // Collapse - hide items after first 3 with smooth animation
         const itemsToHide = Array.from(items).slice(3);
         
         itemsToHide.reverse().forEach((item, index) => {
@@ -287,8 +275,7 @@ function toggleGallery() {
                 item.style.transform = 'translateY(-15px) scale(0.98)';
             }, index * 40);
         });
-        
-        // Hide after all animations complete
+
         setTimeout(() => {
             itemsToHide.forEach(item => {
                 item.style.display = 'none';
@@ -298,22 +285,19 @@ function toggleGallery() {
         grid.classList.add('collapsed');
         btnText.textContent = 'Lihat Lebih Banyak';
         btnIcon.style.transform = 'rotate(0deg)';
-        
-        // Scroll to gallery section after animation starts
+
         setTimeout(() => {
             document.getElementById('galeri').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 200);
     }
 }
 
-// Initialize gallery as collapsed if more than 3 items
 document.addEventListener('DOMContentLoaded', function() {
     const grid = document.getElementById('galeriGrid');
     if (grid) {
         const items = grid.querySelectorAll('.galeri-item');
         if (items.length > 3) {
             grid.classList.add('collapsed');
-            // Hide items after the first 3
             items.forEach((item, index) => {
                 if (index >= 3) {
                     item.style.display = 'none';
@@ -324,11 +308,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Lazy load images with blur-up effect
 document.addEventListener('DOMContentLoaded', function() {
     const lazyImages = document.querySelectorAll('.lazy-load');
-    
-    // Check if browser supports IntersectionObserver
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -342,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }, {
-            rootMargin: '50px' // Start loading 50px before image enters viewport
+            rootMargin: '50px'
         });
         
         lazyImages.forEach(img => imageObserver.observe(img));

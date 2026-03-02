@@ -5,11 +5,12 @@ body {
   line-height: 1.6;
   color: #333;
   background: #f8f9fa;
+  overflow-x: hidden;
 }
 
-/* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 * {
@@ -37,7 +38,6 @@ html {
   opacity: 1;
 }
 
-/* Stagger animation delays for multiple elements */
 .fade-in-up:nth-child(1) { animation-delay: 0.1s; }
 .fade-in-up:nth-child(2) { animation-delay: 0.2s; }
 .fade-in-up:nth-child(3) { animation-delay: 0.3s; }
@@ -57,7 +57,6 @@ header {
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Transparent navbar for landing page only */
 header.transparent-nav {
   background: transparent;
 }
@@ -67,7 +66,6 @@ header.transparent-nav.scrolled {
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-/* Solid navbar for all other pages */
 header.solid-nav {
   background: #059669;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
@@ -88,7 +86,6 @@ header.solid-nav {
   line-height: 1.3;
 }
 
-/* Logo subtitle color changes based on navbar state */
 header.transparent-nav .logo-subtitle {
   color: #10b981;
   transition: color 0.3s ease;
@@ -157,21 +154,19 @@ header.solid-nav .logo-subtitle {
     overflow: hidden;
     transition: max-height 0.4s ease, padding 0.4s ease, background-color 0.3s ease;
   }
-  
-  /* Transparent mobile menu when navbar is transparent */
+
   header.transparent-nav .nav-links {
     background-color: transparent;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
-  
-  /* Solid background when scrolled */
+
   header.transparent-nav.scrolled .nav-links {
     background-color: rgba(5, 150, 105, 0.98);
   }
   
   .nav-links.active {
-    max-height: 800px; /* Increased to accommodate dropdown expansion */
+    max-height: 800px;
     padding: 1rem 0;
   }
   
@@ -179,20 +174,18 @@ header.solid-nav .logo-subtitle {
     padding: 1rem 0;
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
-  
-  /* Mobile dropdown - make it behave like regular menu items */
+
   .nav-links .dropdown {
-    padding: 0; /* Remove padding from dropdown container */
+    padding: 0;
   }
   
   .nav-links .dropdown > a {
     display: block;
-    padding: 1rem 0; /* Keep consistent padding with other menu items */
-    cursor: pointer; /* Ensure cursor shows it's clickable */
-    pointer-events: auto; /* Make sure it's clickable */
+    padding: 1rem 0;
+    cursor: pointer; 
+    pointer-events: auto;
   }
-  
-  /* Mobile dropdown styling */
+
   .dropdown-content {
     position: static !important;
     box-shadow: none;
@@ -206,29 +199,26 @@ header.solid-nav .logo-subtitle {
     transform: none !important;
     transition: max-height 0.3s ease;
     display: block;
-    pointer-events: auto !important; /* Enable clicking in mobile */
+    pointer-events: auto !important;
   }
-  
-  /* Transparent dropdown when navbar is transparent */
+
   header.transparent-nav .dropdown-content {
     background: rgba(4, 120, 87, 0.3);
   }
-  
-  /* Solid dropdown when scrolled */
+
   header.transparent-nav.scrolled .dropdown-content {
     background: rgba(4, 120, 87, 0.9);
   }
-  
-  /* When dropdown is active, show the content */
+
   .dropdown.active .dropdown-content {
-    max-height: 300px; /* Increased for better expansion */
+    max-height: 300px;
   }
   
   .dropdown-content a {
     padding: 0.8rem 2rem;
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    color: white; /* Ensure text is white in mobile */
-    text-align: center; /* Center the dropdown items */
+    color: white;
+    text-align: center; 
   }
   
   .dropdown-content a:hover {
@@ -245,7 +235,6 @@ header.solid-nav .logo-subtitle {
   position: relative;
 }
 
-/* 🔹 Dropdown Menu - Desktop Default */
 .dropdown-content {
   display: block;
   position: absolute;
@@ -258,8 +247,6 @@ header.solid-nav .logo-subtitle {
   z-index: 10;
   padding: 0;
   margin-top: 0.5rem;
-  
-  /* Animation properties */
   opacity: 0;
   transform: translateY(-10px);
   max-height: 0;
@@ -279,7 +266,6 @@ header.solid-nav .logo-subtitle {
   background-color: #e9ecef;
 }
 
-/* 🔹 Desktop: Click Effect to Show - Slide down + Fade in */
 @media (min-width: 769px) {
   .dropdown.active .dropdown-content {
     opacity: 1;
@@ -290,7 +276,6 @@ header.solid-nav .logo-subtitle {
   }
 }
 
-/* Dropdown arrow animation */
 .dropdown > a {
   cursor: pointer;
   user-select: none;
@@ -411,7 +396,7 @@ header.solid-nav .logo-subtitle {
   }
   
   .hero-container {
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem 1rem;
     gap: 1.5rem;
   }
   
@@ -523,7 +508,22 @@ header.solid-nav .logo-subtitle {
   }
   
   .hero-container {
-    padding: 3rem 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-container {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+  
+  .hero p {
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 }
 
@@ -556,14 +556,52 @@ section p {
   margin-right: auto;
 }
 
+@media (max-width: 768px) {
+  section {
+    padding: 3rem 1rem;
+  }
+  
+  section h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 2rem 0.75rem;
+  }
+  
+  section h2 {
+    font-size: 1.75rem;
+  }
+  
+  section p {
+    font-size: 1rem;
+  }
+}
+
 /* ====== CAKUPAN ====== */
 .cakupan-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .cakupan-cards {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cakupan-cards {
+    padding: 0 0.75rem;
+  }
 }
 
 .facility-card {
@@ -651,14 +689,11 @@ section p {
   transition: stroke 0.3s ease;
 }
 
-/* Responsive for tablets */
 @media (min-width: 769px) and (max-width: 1024px) {
   .cakupan-cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* Responsive for mobile */
 @media (max-width: 768px) {
   .cakupan-cards {
     display: grid;
@@ -692,7 +727,6 @@ section p {
   }
 }
 
-/* Extra small screens */
 @media (max-width: 480px) {
   .cakupan-cards {
     grid-template-columns: repeat(3, 1fr);
@@ -809,7 +843,6 @@ section p {
   transform: translateY(-1px);
 }
 
-/* Responsive gallery */
 @media (max-width: 1024px) {
   .galeri-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -886,7 +919,6 @@ section p {
   text-align: left;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .kontak-container {
     grid-template-columns: 1fr;
@@ -896,8 +928,7 @@ section p {
   .kontak-map iframe {
     height: 300px;
   }
-  
-  /* Tentang Kami responsive - stack vertically on mobile */
+
   #tentang > div > div:first-child {
     float: none !important;
     width: 100% !important;

@@ -147,7 +147,6 @@ main {
   margin: 0;
 }
 
-/* Keep old .footer for backward compatibility */
 .footer {
   background: #1b5e20;
   color: white;
@@ -173,7 +172,6 @@ main {
   transform: translateY(-5px);
 }
 
-/* Facility Tooltip */
 .facility-tooltip {
   display: none;
   position: absolute;

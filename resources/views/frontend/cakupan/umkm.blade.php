@@ -3,7 +3,6 @@
 @section('title', 'UMKM - Gugur Gunung')
 
 @section('content')
-<!-- 🔹 TOMBOL KEMBALI -->
 <div class="back-btn-container">
     <a href="{{ route('home') }}" class="back-btn">← Kembali ke Beranda</a>
 </div>
@@ -43,8 +42,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Modal for {{ $item->judul }} -->
+
                 <div id="modal{{ $loop->index }}" class="facility-modal">
                     <div class="modal-content">
                         <span class="modal-close">&times;</span>
@@ -156,7 +154,6 @@
     color: #047857;
 }
 
-/* Modal Styles */
 .facility-modal {
     display: none;
     position: fixed;
@@ -236,9 +233,7 @@
 
 @push('scripts')
 <script>
-// Event delegation for opening modals
 document.addEventListener('click', function(e) {
-    // Open modal when clicking facility card
     const card = e.target.closest('.facility-card');
     if (card) {
         const modalId = card.getAttribute('data-modal');
@@ -248,8 +243,7 @@ document.addEventListener('click', function(e) {
             document.body.style.overflow = 'hidden';
         }
     }
-    
-    // Close modal when clicking close button or outside modal
+
     if (e.target.classList.contains('modal-close') || e.target.classList.contains('facility-modal')) {
         const modal = e.target.closest('.facility-modal');
         if (modal) {
@@ -257,14 +251,12 @@ document.addEventListener('click', function(e) {
             document.body.style.overflow = 'auto';
         }
     }
-    
-    // Prevent closing when clicking inside modal content
+
     if (e.target.closest('.modal-content') && !e.target.classList.contains('modal-close')) {
         e.stopPropagation();
     }
 });
 
-// Close modal when pressing Escape key
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         const modals = document.querySelectorAll('.facility-modal.active');
